@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router";
 const API_TOKEN = import.meta.env.VITE_TMDB_API_TOKEN;
 import { useQuery } from "@apollo/client";
 import { GET_BY_ID } from "../quries";
+import Loading from "./Loading.jsx";
 
 export default function Movie({ series }) {
   const [movies, setMovies] = useState([]);
@@ -47,8 +48,8 @@ export default function Movie({ series }) {
       </h1>
     );
   }
-  if (loading || movies.length == 0) {
-    return <h1>Loading...</h1>;
+  if (loading || movies.length === 0) {
+    return <Loading />;
   }
 
   let comGenre = "";

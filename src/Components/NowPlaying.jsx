@@ -4,6 +4,7 @@ import { SwiperSlide } from "swiper/react";
 import { Link } from "react-router";
 import { useQuery } from "@apollo/client";
 import { GET_NOW_PLAYING_MOVIES } from "../quries";
+import Loading from "./Loading.jsx";
 
 export default function NowPlaying({ whatShow, series }) {
   const [movies, setMovies] = useState([]);
@@ -17,7 +18,7 @@ export default function NowPlaying({ whatShow, series }) {
   }, [loading]);
 
   if (loading || !movies) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (error) {

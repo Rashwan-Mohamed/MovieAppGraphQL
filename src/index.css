@@ -62,7 +62,6 @@ img {
 
 nav {
   display: flex;
-  justify-content: center;
   align-items: center;
   background: black;
   /* margin-bottom: 2rem; */
@@ -75,7 +74,6 @@ nav {
 }
 
 nav ul {
-  display: flex;
   gap: 0 40px;
   display: flex;
   gap: 0 40px;
@@ -112,9 +110,6 @@ body {
 }
 .viewGenre {
   width: 100%;
-  background-color: #212121;
-  background-color: #52616b;
-  background-color: #222831;
   background-color: #09122c;
   padding: 1rem;
   border-radius: 10px;
@@ -137,15 +132,13 @@ nav a:hover {
   color: #d70654;
 }
 nav input {
-  border: none;
   outline: none;
   background: transparent;
   border: 1px solid gainsboro;
-  padding: 10px 20px;
   border-radius: 3px;
   transition: all ease-in-out 0.2s;
   color: white;
-  padding-left: 45px;
+  padding: 10px 20px 10px 45px;
 }
 
 nav input:focus {
@@ -203,7 +196,6 @@ nav input:focus {
 }
 .displayResults {
   width: 400px;
-  background-color: white;
   background-color: #09122c;
   padding: 1rem;
   border-radius: 10px;
@@ -352,7 +344,6 @@ div.gridEle > div > p:nth-child(4) {
 
 .movieArticle {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-template-columns: auto auto;
 
   gap: 0;
@@ -436,7 +427,12 @@ div.gridEle > div > p:nth-child(4) {
     font-size: 45px;
   }
 }
-
+.centerLoading{
+  display: flex;
+justify-content: center;
+align-items: center;
+  margin: auto;
+}
 /* 768px - 1024px */
 @media screen and (max-width: 1024px) {
   div.gridEle > div > h1:nth-child(1) {
