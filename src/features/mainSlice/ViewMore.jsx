@@ -9,10 +9,7 @@ import { useQuery } from "@apollo/client";
 export default function ViewMore({ series }) {
   const width = useWidth();
   let initialLimit = 15;
-  let wordLimit;
-  if (width < 1250) {
-    wordLimit = 150;
-  }
+
   if (width < 1025) {
     initialLimit = 10;
   }
