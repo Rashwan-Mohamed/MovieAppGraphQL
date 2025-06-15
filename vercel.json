@@ -1,5 +1,15 @@
 {
+  "version": 2,
+  "functions": {
+    "server/api/graphql.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "rewrites": [
+    {
+      "source": "/api/graphql",
+      "destination": "/server/api/graphql.js"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
