@@ -12,7 +12,6 @@ const initialState = {
 export const getMovies = createAsyncThunk("movies/getMovies", async (query) => {
   try {
     const API_TOKEN = import.meta.env.VITE_TMDB_API_TOKEN;
-
     const options = {
       method: "GET",
       headers: {
