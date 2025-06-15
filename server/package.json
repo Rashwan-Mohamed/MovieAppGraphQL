@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/datasource-rest": "^6.4.1",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "react-loader-spinner": "^6.1.6"
   }
 }

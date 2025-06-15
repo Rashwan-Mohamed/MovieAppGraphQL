@@ -1,7 +1,7 @@
-import { RESTDataSource } from "@apollo/datasource-rest";
 import "dotenv/config";
+import { RESTDataSource } from "@apollo/datasource-rest";
 
-const API_TOKEN = process.env.VITE_TMDB_API_TOKEN; // Use process.env, not import.meta.env
+const API_TOKEN = process.env.TMDB_API_TOKEN; // Use process.env, not import.meta.env
 
 const options = {
   method: "GET",
@@ -10,6 +10,7 @@ const options = {
     Authorization: `Bearer ${API_TOKEN}`,
   },
 };
+
 export class MovieAPI extends RESTDataSource {
   baseURL = "https://api.themoviedb.org/3/";
 
@@ -19,7 +20,7 @@ export class MovieAPI extends RESTDataSource {
       language: "en-US",
       page: page,
     });
-    if (series && whatShow == "trending") {
+    if (series && whatShow === "trending") {
       baseUrl = `trending/tv/week?language=en-US`;
     } else {
       baseUrl = `${series ? "tv" : "movie"}/${whatShow}?language=en-US`;
@@ -29,7 +30,7 @@ export class MovieAPI extends RESTDataSource {
     return this.get(query, options);
   }
   getSearchResult(series, searchQuery) {
-    let query = `https://api.themoviedb.org/3/search/${series == "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
+    let query = `https://api.themoviedb.org/3/search/${series === "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
     return this.get(query, options);
   }
 }

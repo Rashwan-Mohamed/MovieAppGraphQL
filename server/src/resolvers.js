@@ -34,11 +34,10 @@ export const resolvers = {
     },
     getById: async (_, { series, whatShow }, { dataSources }) => {
       try {
-        const data = await dataSources.movieAPI.getNowPlayingMovies(
-          series,
-          whatShow
+        return await dataSources.movieAPI.getNowPlayingMovies(
+            series,
+            whatShow
         );
-        return data;
       } catch (error) {
         console.error("Error fetching now playing movies:", error);
         return [];
@@ -63,53 +62,3 @@ export const resolvers = {
   },
 };
 
-/*
-    getTopRatedMovies: async (_, args, { dataSources }) => {
-      try {
-        const data = await dataSources.movieAPI.getTopRatedMovies();
-        console.log(data);
-
-        return data.results || [];
-      } catch (error) {
-        console.error("Error fetching now playing movies:", error);
-        return [];
-      }
-    },
-    getUpComingMovies: async (_, args, { dataSources }) => {
-      try {
-        const data = await dataSources.movieAPI.getUpComingMovies();
-        console.log(data);
-
-        return data.results || [];
-      } catch (error) {
-        console.error("Error fetching now playing movies:", error);
-        return [];
-      }
-    },
-
-    getPopularSeries: async (_, args, { dataSources }) => {
-      try {
-        const data = await dataSources.movieAPI.getPopularSeries();
-        console.log(data);
-
-        return data.results || [];
-      } catch (error) {
-        console.error("Error fetching now playing movies:", error);
-        return [];
-      }
-    },
-    getTopRatedSeries: async (_, args, { dataSources }) => {
-      try {
-        const data = await dataSources.movieAPI.getTopRatedSeries();
-        console.log(data);
-
-        return data.results || [];
-      } catch (error) {
-        console.error("Error fetching now playing movies:", error);
-        return [];
-      }
-    },
-
-
-
-*/
