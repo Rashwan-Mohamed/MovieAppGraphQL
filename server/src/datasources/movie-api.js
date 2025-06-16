@@ -33,8 +33,6 @@ export class MovieAPI extends RESTDataSource {
     const query = `${baseUrl}?${queryParams.toString()}`;
 
     return this.get(query, options);
-
-
   }
   getSearchResult(series, searchQuery) {
     let query = `https://api.themoviedb.org/3/search/${series === "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
