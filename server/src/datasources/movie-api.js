@@ -5,7 +5,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer ${API_TOKEN}`
+    Authorization: `Bearer${API_TOKEN}`
   }
 };
 export class MovieAPI extends RESTDataSource {
