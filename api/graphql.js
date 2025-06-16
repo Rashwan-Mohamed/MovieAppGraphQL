@@ -5,32 +5,20 @@ import { MovieAPI } from '../server/src/datasources/movie-api.js';
 import { typeDefs } from '../server/src/schema.js';
 import { resolvers } from '../server/src/resolvers.js';
 
-// Setup Apollo server
+// Create Apollo Server
 const server = new ApolloServer({
     typeDefs,
     resolvers,
 });
 
-const handler = async (req, res) => {
-    // ✅ Handle CORS headers for all requests
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-    // ✅ Handle preflight OPTIONS request
-    if (req.method === "OPTIONS") {
-        return res.status(200).end();
-    }
-
-    // Delegate to Apollo handler
-    return startServerAndCreateNextHandler(server, {
-        context: async () => ({
-            dataSources: {
-                movieAPI: new MovieAPI(),
-            },
-        }),
-    })(req, res);
-};
+// Start Apollo + create Next handler once
+const handler = startServerAndCreateNextHandler(server, {
+    context: async () => ({
+        dataSources: {
+            movieAPI: new MovieAPI(),
+        },
+    }),
+});
 
 export const config = {
     api: {
@@ -38,4 +26,17 @@ export const config = {
     },
 };
 
-export default handler;
+// Final wrapped handler for CORS + preflight
+export default async function wrappedHandler(req, res) {
+    // CORS headers
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    // Preflight
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
+    }
+
+    return handler(req, res);
+}
