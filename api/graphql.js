@@ -1,7 +1,5 @@
-// api/graphql.js
-
 import 'dotenv/config';
-import { ApolloServer } from '@apollo/server';
+import { ApolloServer, makeExecutableSchema } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { MovieAPI } from '../server/src/datasources/movie-api.js';
 import { typeDefs } from '../server/src/schema.js';
@@ -10,7 +8,12 @@ import { resolvers } from '../server/src/resolvers.js';
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-});
+    introspection: true,
+    playground: true,
+}).createHandler({
+    path: '/api/graphql',
+})
+    ;
 
 const handler = startServerAndCreateNextHandler(
     server,
