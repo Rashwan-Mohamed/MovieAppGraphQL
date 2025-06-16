@@ -10,6 +10,7 @@ export class MovieAPI extends RESTDataSource {
       language: "en-US",
       page: page.toString(),
     });
+    console.log("Sending request with token:", API_TOKEN?.slice(0, 10) + '...');
 
     let baseUrl = "";
     if (series && whatShow === "trending") {
@@ -21,8 +22,9 @@ export class MovieAPI extends RESTDataSource {
     const query = `${baseUrl}?${queryParams.toString()}`;
     return this.get(query, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
+        Authorization: `Bearer ${API_TOKEN}`, // Must match the working curl
         accept: "application/json",
+
       },
     });
   }
@@ -32,7 +34,7 @@ export class MovieAPI extends RESTDataSource {
     const query = `search/${type}?query=${encodeURIComponent(searchQuery)}&include_adult=false&language=en-US&page=1`;
     return this.get(query, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
+        Authorization: `Bearer ${API_TOKEN}`, // Must match the working curl
         accept: "application/json",
       },
     });
