@@ -9,10 +9,29 @@ const server = new ApolloServer({
     resolvers,
 });
 
-export default startServerAndCreateNextHandler(server, {
-    context: async () => ({
-        dataSources: {
-            movieAPI: new MovieAPI(),
-        },
-    }),
+const handler = startServerAndCreateNextHandler(server, {
+    context: async (req, res) => {
+        // 🧠 Set CORS headers
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+        if (req.method === "OPTIONS") {
+            res.status(200).end(); // 👈 handles preflight
+            return;
+        }
+
+        return {
+            dataSources: {
+                movieAPI: new MovieAPI(),
+            },
+        };
+    },
 });
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
+
+export default handler;
