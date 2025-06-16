@@ -11,7 +11,7 @@ import ViewMore from "./features/mainSlice/ViewMore.jsx";
 import { Series } from "./Components/Series.jsx";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 const client = new ApolloClient({
-  uri: "https://movie-app-five-opal.vercel.app/api",
+  uri: "https://movie-app-five-opal.vercel.app/api/graphql",
   cache: new InMemoryCache(),
 });
 createRoot(document.getElementById("root")).render(
