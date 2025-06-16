@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { RESTDataSource } from "@apollo/datasource-rest";
+import 'dotenv/config';
 
 const API_TOKEN = process.env.TMDB_API_TOKEN; // Use process.env, not import.meta.env
 
