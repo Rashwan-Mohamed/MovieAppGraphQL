@@ -5,6 +5,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 import 'dotenv/config';
 
 const API_TOKEN = process.env.TMDB_API_TOKEN; // Use process.env, not import.meta.env
+console.log(API_TOKEN);
 
 const options = {
   method: "GET",
@@ -24,9 +25,9 @@ export class MovieAPI extends RESTDataSource {
       page: page,
     });
     if (series && whatShow === "trending") {
-      baseUrl = `trending/tv/week?language=en-US`;
+      baseUrl = `trending/tv/week`;
     } else {
-      baseUrl = `${series ? "tv" : "movie"}/${whatShow}?language=en-US`;
+      baseUrl = `${series ? "tv" : "movie"}/${whatShow}`;
     }
     const query = `${baseUrl}?${queryParams.toString()}`;
 
