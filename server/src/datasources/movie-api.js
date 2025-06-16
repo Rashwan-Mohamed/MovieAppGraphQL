@@ -32,22 +32,22 @@ export class MovieAPI extends RESTDataSource {
     }
     const query = `${baseUrl}?${queryParams.toString()}`;
 
-    return this.get(query, null, {
+    return this.get(query, {
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${API_TOKEN}`,
       },
     });
+
 
   }
   getSearchResult(series, searchQuery) {
     let query = `https://api.themoviedb.org/3/search/${series === "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
-    return this.get(query, null, {
+    return this.get(query, {
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${API_TOKEN}`,
       },
     });
-
   }
 }
