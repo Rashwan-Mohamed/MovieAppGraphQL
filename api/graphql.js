@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { ApolloServer, makeExecutableSchema } from '@apollo/server';
+import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { MovieAPI } from '../server/src/datasources/movie-api.js';
 import { typeDefs } from '../server/src/schema.js';
