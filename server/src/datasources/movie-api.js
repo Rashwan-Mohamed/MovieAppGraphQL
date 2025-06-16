@@ -6,13 +6,13 @@ import 'dotenv/config';
 
 const API_TOKEN = process.env.TMDB_API_TOKEN; // Use process.env, not import.meta.env
 
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_TOKEN}`,
-  },
-};
+// const options = {
+//   method: "GET",
+//   headers: {
+//     accept: "application/json",
+//     Authorization: `Bearer ${API_TOKEN}`,
+//   },
+// };
 
 export class MovieAPI extends RESTDataSource {
   baseURL = "https://api.themoviedb.org/3/";
@@ -30,10 +30,22 @@ export class MovieAPI extends RESTDataSource {
     }
     const query = `${baseUrl}?${queryParams.toString()}`;
 
-    return this.get(query, options);
+    return this.get(query, null, {
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+
   }
   getSearchResult(series, searchQuery) {
     let query = `https://api.themoviedb.org/3/search/${series === "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
-    return this.get(query, options);
+    return this.get(query, null, {
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+
   }
 }
