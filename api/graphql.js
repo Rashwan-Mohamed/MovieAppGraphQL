@@ -10,8 +10,6 @@ const server = new ApolloServer({
     resolvers,
     introspection: true,
     playground: true,
-}).createHandler({
-    path: '/api/graphql',
 })
     ;
 
