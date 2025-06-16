@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 import "dotenv/config";
 import { RESTDataSource } from "@apollo/datasource-rest";
 import 'dotenv/config';
