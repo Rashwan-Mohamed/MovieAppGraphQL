@@ -18,6 +18,8 @@ export class MovieAPI extends RESTDataSource {
   baseURL = "https://api.themoviedb.org/3/";
 
   getNowPlayingMovies(series, whatShow, page = 1) {
+    console.log(API_TOKEN, 'ASSURE TOKEN');
+
     let baseUrl = ``;
     let queryParams = new URLSearchParams({
       language: "en-US",
