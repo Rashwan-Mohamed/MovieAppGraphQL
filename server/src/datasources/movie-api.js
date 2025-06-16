@@ -11,9 +11,10 @@ const API_TOKEN = process.env.TMDB_API_TOKEN; // Use process.env, not import.met
 export class MovieAPI extends RESTDataSource {
   baseURL = "https://api.themoviedb.org/3/";
 
-  willSendRequest(request) {
-    request.headers.set("Authorization", `Bearer ${API_TOKEN}`);
-    request.headers.set("accept", "application/json");
+  willSendRequest(options) {
+    options.headers = options.headers || {};
+    options.headers["Authorization"] = `Bearer ${API_TOKEN}`;
+    options.headers["accept"] = "application/json";
   }
 
   getNowPlayingMovies(series, whatShow, page = 1) {
@@ -32,7 +33,7 @@ export class MovieAPI extends RESTDataSource {
     return this.get(query);
   }
   getSearchResult(series, searchQuery) {
-    let query = `https://api.themoviedb.org/3/search/${series === "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
+    let query = `search/${series === "series" ? "tv" : "movie"}?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
     return this.get(query);
   }
 }
